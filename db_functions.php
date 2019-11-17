@@ -31,21 +31,22 @@ function getBooks() {
         }
 
 // IDEA: funkcija skirta sukurti, irasyti knyga i DB
-        function createBook($book_title, $author, $publish_date, $selling_price){
+function createBook($book_title, $author, $publish_date, $publisher, $selling_price){
         $mano_sql_tekstas = "INSERT INTO books
-                                    VALUES(NULL, '$book_title', '$author', '$publish_date', '$selling_price');";
+                                    VALUES(NULL, '$book_title', '$author', '$publish_date', '$publisher','$selling_price');";
         $arPavyko = mysqli_query(   getPrisijungimas() , $mano_sql_tekstas);
         if ( !$arPavyko ) {echo "EROROR: nepavyko pateikti klausimo." . mysqli_error( getPrisijungimas() ); }
     }
 
 // IDEA: funkcija skirta atnaujinti konkrecios knygos informacija
-                function updatebook($id, $book_title, $author, $publish_date, $selling_price) {
+function updatebook($id, $book_title, $author, $publish_date, $publisher, $selling_price) {
 
                     $manoSQL = "UPDATE books SET
                                                     book_title = '$book_title',
                                                     author = '$author',
                                                     publish_date = '$publish_date',
-                                                    selling_price = '$selling_price',
+                                                    publisher = '$publisher',
+                                                    selling_price = '$selling_price'
 
                                                 WHERE id = '$id'
                                                 LIMIT 1";

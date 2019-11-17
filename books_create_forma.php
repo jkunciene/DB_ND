@@ -13,11 +13,7 @@
   <header>
           <h2 class="bg-light p-3 text-center">Create Book</h2>
   </header>
-<form action="booksupdate.php" method="get">
-    <div class="form-group">
-      <label for="book">Book ID</label>
-      <input type="text"  id="id" name="id" class="form-control" value="<?php $ats = getBook_ID($_GET['nr']); echo $ats['id']; ?>" name="id" >
-    </div>
+<form action="bookscreate.php" method="get">
     <div class="form-group">
       <label for="book_title">Title</label>
       <input type="text" id="book_title" name="book_title" class="form-control" placeholder="Book">
@@ -38,15 +34,15 @@
       <label for="selling_price">Selling price</label>
       <input type="text" id="selling_price" name="selling_price" class="form-control" placeholder="Selling price">
     </div>
-    <button type="submit" value="Submit" class="btn btn-primary" onclick="myFunction()">Update</button>
+    <button type="submit" value="Submit" class="btn btn-primary" onclick="myFunction()">Create</button>
 </form>
 </div>
 </body>
 <script>
 function myFunction() {
   var txt;
-  if (confirm("Update Book!")) {
-    txt = "Tu atnaujinsi!";
+  if (confirm("create Book!")) {
+    txt = "Tu sukursi naują knyga!";
   } else {
     txt = "You pressed Cancel!";
   }

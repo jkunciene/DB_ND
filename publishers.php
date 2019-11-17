@@ -3,18 +3,12 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>teltonika</title>
+        <title>DB_ND</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
     <body>
 <div class="container">
-<header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <form action="search.php"    method="GET"   class="form-inline my-2 my-lg-0" >
-                    <input type="text" class="form-control mr-sm-2" name="fraze" aria-label="Search" placeholder="yuo can search country">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Search">Search</button>
-                </form>
-        </nav>
+nav>
 </header>
 <div class="row mb-5 mt-5">
   <div class="col">
