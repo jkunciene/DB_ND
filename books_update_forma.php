@@ -11,7 +11,7 @@
 <body>
 <div class="container">
   <header>
-          <h2 class="bg-light p-3 text-center">Create Book</h2>
+          <h2 class="bg-light p-3 text-center">Update Book</h2>
   </header>
 <form action="booksupdate.php" method="get">
     <div class="form-group">

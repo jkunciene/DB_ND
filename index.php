@@ -25,13 +25,14 @@
       for($i=1; $i < HOME_NUMBER_OF_ARTICLES; $i++){
       while($knyga == true){
         $trans = $knyga[id];
+        $nes=$knyga[publisher];
 
     ?>
                 <tr>
                 <td><? echo $knyga['book_title']; ?></td>
                 <td><? echo $knyga['author']; ?></td>
                 <td><? echo $knyga['publish_date']; ?></td>
-                <td><? echo $knyga['publisher']; ?></td>
+                <td><? echo "<a  ' href= 'publishers.php?nr=$nes'>".$knyga['publisher']."</a>" ;  ?></td>
                 <td><? echo $knyga['selling_price']; ?></td>
                 <td><? echo "<a class='card-link' href= 'books_update_forma.php?nr=$trans'>".Update."</a>"; ?></td>
                 <td><? echo "<a class='card-link' href= 'booksdelete.php?nr=$trans'>".Delete."</a>"; ?></td>

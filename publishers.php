@@ -8,31 +8,32 @@
     </head>
     <body>
 <div class="container">
-nav>
+
 </header>
 <div class="row mb-5 mt-5">
   <div class="col">
-    <?php echo "<a type='button' class='btn btn-warning' href= 'city_create_forma.php'>".Yuo_can_create_new_City ."</a>";?>
+    <?php echo "<a type='button' class='btn btn-warning' href= 'publisher_create_forma.php'>".Yuo_can_create_new_Publisher ."</a>";?>
   </div>
 </div>
         <div class="card" style="width: 18rem;">
           <div class="card-body  text-center">
             <?php
-            $ats = getCountry_ID($_GET['nr']);
-            //print($ats['id']);
-            $miestai = getCity_pgl_countryID($ats['id']);
-            $miestas = mysqli_fetch_assoc($miestai);
-            while (  $miestas == true ) {
-                        echo "<p class='card-text'>"."City ID  ". $miestas['id']."</p>";
-                        echo "<h3 class='card-title'>"."City  ". $miestas['city']."</h3>";
-                        echo "<h6 class='card-subtitle mb-2 text-muted'>"."Area  ".$miestas['cityarea']."</h6>";
-                        echo "<p class='card-text'>"."Population  ".$miestas['citypopulation']."</p>";
-                        echo "<p class='card-text'>"."Code  ".$miestas['citycode'] ."</p>";
-                        $k=$miestas['id'];
-                        echo "<a class='card-link' href= 'city_update_forma.php?nr=$k'>".Update."</a>";
-                        echo "<a class='card-link' href= 'citydelete.php?nr=$k'>".Delete."</a>";
+            $ats = getBook_Publisher($_GET['nr']);
+            //print($ats['publisher']);
+            $leidejai = getPublisher_pgl_Book($ats['publisher']);
+            $leidejas = mysqli_fetch_assoc($leidejai);
+            while (  $leidejas == true ) {
+                        echo "<p class='card-text'>"."Publisher ID  ". $leidejas['id']."</p>";
+                        echo "<h3 class='card-title'>"."Publisher name  ". $leidejas['publisher_name']."</h3>";
+                        echo "<h6 class='card-subtitle mb-2 text-muted'>"."Book Title  ".$leidejas['book_title']."</h6>";
+                        echo "<p class='card-text'>"."Author  ".$leidejas['author']."</p>";
+                        echo "<p class='card-text'>"."Printed quantity  ".$leidejas['printed_quantity'] ."</p>";
+                        echo "<p class='card-text'>"."Printing price  ".$leidejas['printing_price'] ."</p>";
+                        $k=$leidejas['id'];
+                        echo "<a class='card-link' href= 'publisher_update_forma.php?nr=$k'>".Update."</a>";
+                        echo "<a class='card-link' href= 'publisherdelete.php?nr=$k'>".Delete."</a>";
                         echo "<hr />";
-                      $miestas = mysqli_fetch_assoc($miestai);}
+                      $leidejas = mysqli_fetch_assoc($leidejai);}
              ?>
         </div>
       </div>

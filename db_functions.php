@@ -11,9 +11,16 @@
     }
     getPrisijungimas();
 
-// IDEA: gaunu konkrecia knyga  pagal ID
+// IDEA: gaunu konkrecia knyga  pagal spec poreiki
         function getBook_ID( $aa ) {
             $manoSQL = "SELECT * FROM books  WHERE id='$aa'   ";
+            $rezultataiOBJ = mysqli_query(getPrisijungimas(),  $manoSQL);
+            $rezultataiArray = mysqli_fetch_assoc($rezultataiOBJ);
+            return $rezultataiArray;
+        }
+
+        function getBook_Publisher( $publisher ) {
+            $manoSQL = "SELECT * FROM books  WHERE publisher='$publisher'   ";
             $rezultataiOBJ = mysqli_query(getPrisijungimas(),  $manoSQL);
             $rezultataiArray = mysqli_fetch_assoc($rezultataiOBJ);
             return $rezultataiArray;
@@ -60,58 +67,49 @@ function deleteBook($kuris) {
           $rezult = mysqli_query(getPrisijungimas(),  $mano_sql_tekstas );
                 }
 
-// IDEA: funkcija grąžina miestus pagal ID
-  function getCityID($cid) {
-          $manoSQL = "SELECT * FROM citytable WHERE id='$cid' ";
+// IDEA: funkcija grąžina leidejus pagal ID
+  function getPublisherID($cid) {
+          $manoSQL = "SELECT * FROM publishers WHERE id='$cid' ";
           $atsOBJ = mysqli_query(getPrisijungimas(),  $manoSQL);
           $atsArray = mysqli_fetch_assoc($atsOBJ);
           return $atsArray;
                                 }
 // IDEA: ši funkcija skirta miestu išvedimui pagal sali,kurioje jie yra
-  function getCity_pgl_countryID($nr) {
-      $id_apdorotas =  mysqli_real_escape_string (getPrisijungimas(), $nr );
-      $mano_sql_tekstas = "SELECT * FROM citytable
-                          WHERE idcountry = '$id_apdorotas'";
+  function getPublisher_pgl_Book($publisher) {
+
+      $mano_sql_tekstas = "SELECT * FROM publishers
+                          WHERE publisher_name = '$publisher'";
                           $rezultatai = mysqli_query( getPrisijungimas() , $mano_sql_tekstas);
                           return $rezultatai;}
-// IDEA: funkcija skirta sukurti Miesta
-function createCity($city, $cityarea, $citypopulation, $citycode, $idcountry){
-        $city_apdorotas =  mysqli_real_escape_string (getPrisijungimas(), $city );
-        $cityarea_apdorotas =  mysqli_real_escape_string (getPrisijungimas(), $cityarea );
-        $citypopulation_apdorotas =  mysqli_real_escape_string (getPrisijungimas(), $citypopulation );
-        $citycode_apdorotas =  mysqli_real_escape_string (getPrisijungimas(), $citycode );
-        $idcountry_apdorotas =  mysqli_real_escape_string (getPrisijungimas(), $idcountry );
-        $mano_sql_tekstas = "INSERT INTO citytable
-                                    VALUES(NULL, '$city_apdorotas', '$cityarea_apdorotas', '$citypopulation_apdorotas', '$citycode_apdorotas', NOW(),'$idcountry_apdorotas');";
+
+// IDEA: funkcija skirta sukurti leideja
+function createPublisher($publisher_name, $book_title, $author, $printed_quantity, $printing_price){
+
+        $mano_sql_tekstas = "INSERT INTO publishers
+                                    VALUES(NULL, '$publisher_name', '$book_title', '$author', '$printed_quantity', '$printing_price');";
         $arPavyko = mysqli_query(   getPrisijungimas() , $mano_sql_tekstas);
         if ( !$arPavyko ) {
              echo "EROROR: nepavyko pateikti klausimo." . mysqli_error( getPrisijungimas() );
         }
 }
-// IDEA: funkcija miestu info atnaujinimui
-function updateCity($id, $city, $cityarea, $citypopulation, $citycode, $idcountry){
-$id_apdorotas = mysqli_real_escape_string (getPrisijungimas(), $id );
-$city_apdorotas =  mysqli_real_escape_string (getPrisijungimas(), $city );
-$cityarea_apdorotas =  mysqli_real_escape_string (getPrisijungimas(), $cityarea );
-$citypopulation_apdorotas =  mysqli_real_escape_string (getPrisijungimas(), $citypopulation );
-$citycode_apdorotas =  mysqli_real_escape_string (getPrisijungimas(), $citycode );
-$idcountry_apdorotas =  mysqli_real_escape_string (getPrisijungimas(), $idcountry );
-    $manoSQL = "UPDATE citytable SET
-                                    city = '$city_apdorotas',
-                                    cityarea = '$cityarea_apdorotas',
-                                    citypopulation = '$citypopulation_apdorotas',
-                                    citycode = '$citycode_apdorotas',
-                                    cityUPdata = NOW(),
-                                    idcountry = '$idcountry_apdorotas'
-                                    WHERE id = '$id_apdorotas'
+// IDEA: funkcija leideju info atnaujinimui
+function updatePublisher($id, $publisher_name, $book_title, $author, $printed_quantity, $printing_price){
+
+    $manoSQL = "UPDATE publishers SET
+                                    publisher_name = '$publisher_name',
+                                    book_title = '$book_title',
+                                    author = '$author',
+                                    printed_quantity = '$printed_quantity',
+                                    printing_price = '$printing_price'
+                                    WHERE id = '$id'
                                     LIMIT 1 ";
     $rezultatai = mysqli_query(getPrisijungimas(),  $manoSQL); // print_r(    $rezultataiOBJ );  // test
     if ( !$rezultatai) {
         echo "ERROR: nepavyko redaguoti. SQL klaida:" . mysqli_error(getPrisijungimas());}
 }
 // IDEA: funkcija miesto ištrynimui
-    function deleteCity($kuris) {
-        $kuris_apdorotas = mysqli_real_escape_string (getPrisijungimas(), $kuris );
-        $mano_sql_tekstas = "DELETE FROM citytable WHERE id = $kuris_apdorotas  LIMIT 1";
+    function deletePublisher($kuris) {
+
+        $mano_sql_tekstas = "DELETE FROM publishers WHERE id = $kuris  LIMIT 1";
         $rezult = mysqli_query(getPrisijungimas(),  $mano_sql_tekstas );
     }
